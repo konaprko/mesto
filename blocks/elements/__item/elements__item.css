@@ -1,0 +1,8 @@
+.elements__item {
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #000000;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 282px;
+}

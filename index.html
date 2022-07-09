@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="icon" href="./images/icon-mesto.ico">
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/header-logo.png" alt="Логотип">
+    </header>
+
+    <main class="content">
+      <section class="profile">
+
+        <div class="profile__info">
+          <img class="profile__image" src="./images/profile-image.jpg" alt="Аватар">
+          <ul class="profile__head">
+            <li class="profile__item">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+            </li>
+            <li class="profile__item">
+              <button class="profile__button-edit" type="button"></button>
+            </li>
+            <li class="profile__item">
+              <p class="profile__subtitle">Исследователь океана</p>
+            </li>
+          </ul>
+        </div>
+        <button class="profile__button-add" type="button"></button>
+
+      </section>
+
+      <section class="elements">
+        <ul class="elements__cards">
+          <li class="elements__item">
+            <img class="item__image" src="./images/elements-akvatoria-ZIL.JPG" alt="Публикаиця">
+            <div class="item__container">
+              <h2 class="item__title">Акватория ЗИЛ</h2>
+              <button class="item__button">
+                <img class="item__like" src="./images/item-like.png" alt="Лайк">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img class="item__image" src="./images/elements-petrovavlovsk-kamchatskiy.JPG" alt="Публикаиця">
+            <div class="item__container">
+              <h2 class="item__title">Петропавловск-Камчатский</h2>
+              <button class="item__button">
+                <img class="item__like" src="./images/item-like.png" alt="Лайк">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img class="item__image" src="./images/elements-baikal.JPG" alt="Публикаиця">
+            <div class="item__container">
+              <h2 class="item__title">Байкал</h2>
+              <button class="item__button">
+                <img class="item__like" src="./images/item-like.png" alt="Лайк">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img class="item__image" src="./images/elements-ryazan-region.JPG" alt="Публикаиця">
+            <div class="item__container">
+              <h2 class="item__title">Рязанская область</h2>
+              <button class="item__button">
+                <img class="item__like" src="./images/item-like.png" alt="Лайк">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img class="item__image" src="./images/elements-moscow-region.JPG" alt="Публикаиця">
+            <div class="item__container">
+              <h2 class="item__title">Подмосковье</h2>
+              <button class="item__button">
+                <img class="item__like" src="./images/item-like.png" alt="Лайк">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img class="item__image" src="./images/elements-moscow.JPG" alt="Публикаиця">
+            <div class="item__container">
+              <h2 class="item__title">Москва</h2>
+              <button class="item__button">
+                <img class="item__like" src="./images/item-like.png" alt="Лайк">
+              </button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+
+  </div>
+
+  <div class="popup">
+    <div class="popup__container">
+      <div class="popup__title">Редактировать профиль</div>
+      <form class="popup__form" action="">
+        <div class="form__container">
+          <input class="input__name" type="text" value="Жак-Ив Кусто">
+        </div>
+        <div class="form__container">
+          <input class="input__job" type="text" value="Исследователь океана">
+        </div>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close"></button>
+    </div>
+  </div>
+
+  <script src="./scripts/script.js"></script>
+</body>
+
+</html>

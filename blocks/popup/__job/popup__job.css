@@ -1,4 +1,4 @@
-.input__job {
+.popup__job {
     border: 0;
     width: 358px;
     font-family: 'Inter';
@@ -10,7 +10,7 @@
 }
 
 @media (max-width: 720px) {
-    .input__job {
+    .popup__job {
         width: 238px;
     }
 }

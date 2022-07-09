@@ -22,8 +22,8 @@ popupBtnClose.addEventListener("click", popupClose);
 //Сохранение данных из попапа в профиль юзера
 
 let formElement = document.querySelector(".popup__form")
-let nameInput = document.querySelector(".input__name")
-let jobInput = document.querySelector(".input__job")
+let nameInput = document.querySelector(".popup__name")
+let jobInput = document.querySelector(".popup__job")
 
 function formSubmitHandler(evt) {
     evt.preventDefault();

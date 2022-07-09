@@ -1,4 +1,4 @@
-.item__button {
+.elements__button {
     border: none;
     background-color: #FFFFFF;
     transition-property: opacity;
@@ -6,7 +6,7 @@
     transition-timing-function: ease;
 }
 
-.item__button:hover {
+.elements__button:hover {
     opacity: .5;
     cursor: pointer;
 }

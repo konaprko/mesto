@@ -9,6 +9,7 @@
     box-sizing: border-box;
     border: 1px solid #FFFFFF;
     padding: 0;
+    margin-top: 10px;
     transition-property: opacity;
     transition-duration: .3s;
     transition-timing-function: ease;

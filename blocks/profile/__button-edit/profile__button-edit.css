@@ -20,8 +20,6 @@
     cursor: pointer;
 }
 
-
-
 @media (max-width: 720px) {
     .profile__button-edit {
         width: 18px;

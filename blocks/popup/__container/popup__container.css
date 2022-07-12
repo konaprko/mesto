@@ -2,7 +2,6 @@
     background-color: #FFFFFF;
     color: #000;
     width: 430px;
-    height: 330px;
     box-sizing: border-box;
     padding: 34px 36px 37px;
     position: relative;
@@ -16,7 +15,6 @@
 @media (max-width: 720px) {
     .popup__container {
         width: 282px;
-        height: 322px;
         padding: 25px 22px 25px;
     }
 }

@@ -12,7 +12,7 @@
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.png" alt="Логотип">
+      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
     </header>
 
     <main class="content">
@@ -20,17 +20,11 @@
 
         <div class="profile__info">
           <img class="profile__image" src="./images/profile-image.jpg" alt="Аватар">
-          <ul class="profile__head">
-            <li class="profile__item">
-              <h1 class="profile__title">Жак-Ив Кусто</h1>
-            </li>
-            <li class="profile__item">
-              <button class="profile__button-edit" type="button"></button>
-            </li>
-            <li class="profile__item">
-              <p class="profile__subtitle">Исследователь океана</p>
-            </li>
-          </ul>
+          <div class="profile__head">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__button-edit" type="button"></button>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
         </div>
         <button class="profile__button-add" type="button"></button>
 
@@ -110,13 +104,9 @@
   <div class="popup">
     <div class="popup__container">
       <div class="popup__title">Редактировать профиль</div>
-      <form class="popup__form" action="#">
-        <div class="popup__input">
-          <input class="popup__name" type="text" value="Жак-Ив Кусто">
-        </div>
-        <div class="popup__input">
-          <input class="popup__job" type="text" value="Исследователь океана">
-        </div>
+      <form class="popup__form" name="profileForm" method="post" action="#">
+        <input class="popup__input popup__input_type_name" type="text" name="inputName" placeholder="Имя">
+        <input class="popup__input popup__input_type_job" type="text" name="inputJob" placeholder="О себе">
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
       <button class="popup__close" type="button"></button>

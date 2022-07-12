@@ -1,50 +1,40 @@
-// Открытие попапа
 
-const popupBtn = document.querySelector(".profile__button-edit");
-const popupEle = document.querySelector(".popup");
+const popupBtn = document.querySelector(".profile__button-edit"); // Поиск кнопки "изменить на странице"
+const popupEle = document.querySelector(".popup"); // Поиск попапа на странице
+
+const popupBtnClose = document.querySelector(".popup__close"); // Поиск кнопки закрытия попапа на странице
+
+const formElement = document.querySelector(".popup__form"); // Поиск формы в документе
+const nameInput = document.querySelector(".popup__input_type_name"); // Поиск поля формы для ввода имени
+const jobInput = document.querySelector(".popup__input_type_job"); // Поиск поля формы для ввода деятельности
+
+const profileName = document.querySelector(".profile__title"); // Поиск имени профиля на странице
+const profileJob = document.querySelector(".profile__subtitle"); // Поиск деятельности на странице
+
+// Функция открытия попапа
 
 function popupOpen() {
-    popupEle.classList.add("popup_opened");
+    nameInput.value = profileName.textContent; // Передаем в поле формы имя профиля
+    jobInput.value = profileJob.textContent; // Передаем в поле формы деятельность профиля
+    popupEle.classList.add("popup_opened"); // Добавляем класс открытого попапа
 }
-
 popupBtn.addEventListener("click", popupOpen);
 
-//Закрытие попапа
 
-const popupBtnClose = document.querySelector(".popup__close");
+//Функция закрытия попапа
 
 function popupClose() {
-    popupEle.classList.remove("popup_opened");
+    popupEle.classList.remove("popup_opened"); // Удаляем класс открытого попапа
 }
-
 popupBtnClose.addEventListener("click", popupClose);
 
 //Сохранение данных из попапа в профиль юзера
 
-let formElement = document.querySelector(".popup__form")
-let nameInput = document.querySelector(".popup__name")
-let jobInput = document.querySelector(".popup__job")
-
 function formSubmitHandler(evt) {
     evt.preventDefault();
-
-    let profileName = document.querySelector(".profile__title");
-    let profileJob = document.querySelector(".profile__subtitle");
-
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-
-    popupEle.classList.remove("popup_opened");
-
+    profileName.textContent = nameInput.value; // Передаем данные из формы в имя профиля
+    profileJob.textContent = jobInput.value; // Передаем данные из формы в деятельность профиля
+    popupClose();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
-
-
-
-
-
-
-
-
-

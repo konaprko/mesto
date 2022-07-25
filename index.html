@@ -32,6 +32,12 @@
 
       <section class="elements">
         <ul class="elements__cards">
+
+
+
+
+          <!--
+
           <li class="elements__item">
             <img class="elements__image" src="./images/elements-akvatoria-ZIL.JPG" alt="Публикация">
             <div class="elements__container">
@@ -41,6 +47,9 @@
               </button>
             </div>
           </li>
+
+
+
 
           <li class="elements__item">
             <img class="elements__image" src="./images/elements-petropavlovsk-kamchatskiy.JPG" alt="Публикация">
@@ -91,8 +100,11 @@
               </button>
             </div>
           </li>
+   -->
+
         </ul>
       </section>
+
     </main>
 
     <footer class="footer">
@@ -113,7 +125,23 @@
     </div>
   </div>
 
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/index.js" defer></script>
+
+
+
+  <template id="elements__template">
+    <li class="elements__item">
+      <button class="elements__button-image" type="button" aria-label="Увеличить публикацию">
+        <img class="elements__image" alt="Публикация">
+      </button>
+      <div class="elements__container">
+        <h2 class="elements__title"></h2>
+        <button class="elements__button" type="button" aria-label="Лайк"></button>
+      </div>
+      <button class="elements__button-remove" type="button" aria-label="Удалить"></button>
+    </li>
+  </template>
+
 </body>
 
 </html>

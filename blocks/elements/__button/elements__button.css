@@ -1,12 +1,16 @@
 .elements__button {
+    width: 32px;
+    height: 32px;
+    background-image: url('../../../images/item-like.svg');
+    background-size: 15px 15px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: transparent;
     border: none;
-    background-color: #FFFFFF;
-    transition-property: opacity;
-    transition-duration: .3s;
-    transition-timing-function: ease;
 }
 
 .elements__button:hover {
     opacity: .5;
     cursor: pointer;
 }
+

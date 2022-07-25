@@ -80,12 +80,17 @@ function addCards() {
 }
 
 
-//Функция внесения данных 
+//Функция внесения данных, расстановки лайков
 function createCard({ name, link }) {
     const cardItem = cardTemplate.querySelector(".elements__item").cloneNode(true);
     cardItem.querySelector(".elements__title").textContent = name;
     cardItem.querySelector(".elements__image").src = link;
     cardPosition.append(cardItem);
+
+
+    cardItem.querySelector('.elements__button').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('elements__button_active');
+    });
 }
 
 addCards();
@@ -94,111 +99,9 @@ addCards();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
-
-
-
-
-
-
-
-const cardTemplate = document.querySelector("#elements__template").content.children[0]; //Переменная для содержимого template
-
-const initialCardName = initialCards.map(function (element) {
-    return element.name;
-});
-
-
-const initialCardLink = initialCards.map(function (element) {
-    return element.link;
-});
-
-function createCard(name) {
-    const cardItem = cardTemplate.cloneNode(true); //клонирование содержимого тега template
-    cardItem.querySelector('.elements__title').textContent = name; //Вставлеям навазние
-    const elementsCards = document.querySelector('.elements__cards'); //Переменная для создания каротчки 
-    elementsCards.append(cardItem); //Добавляем на страницу 
-}
-
-function createInitialCards() {
-    initialCardName.map(createCard);
-
-}
-
-createInitialCards();
-
-
-
-*/
-
-/*
-
-
-
-
-const cardTemplate2 = document.querySelector("#elements__template").content.children[0]; //Переменная для содержимого template
-
-
-
-
-function createCard2(link) {
-    const cardItem2 = cardTemplate2.cloneNode(true); //клонирование содержимого тега template
-    cardItem2.querySelector('.elements__image').src = link; //вставляем адрес изображения
-    const elementsCards2 = document.querySelector('.elements__cards'); //Переменная для создания каротчки 
-    elementsCards2.append(cardItem2); //Добавляем на страницу 
-
-}
-
-function createInitialCards2() {
-    initialCardLink.map(createCard2);
-}
-
-createInitialCards2();
-
-
-
-*/
-
-
-/*
-const deleteBtn = document.querySelector(".elements__button-remove"); // Поиск кнопки "Удалить карточку"
-
-function deleteCard() {
+const deleteCardButton = document.querySelector(".elements__button-remove");
+deleteCardButton.addEventListener("click", function () {
     cardItem.remove();
-}
-
-deleteBtn.addEventListener("click", deleteCard);
-
-const todoButtonDel = document.querySelector(".elements__button-remove");
-
-
-   const deleteBtn = document.querySelector(".elements__button-remove"); // Поиск кнопки "Удалить карточку"
-
-    function deleteCard() {
-        cardItem.remove();
+});
 */

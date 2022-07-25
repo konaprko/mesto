@@ -2,15 +2,15 @@
     width: 32px;
     height: 32px;
     background-image: url('../../../images/item-like.svg');
-    background-size: 15px 15px;
+    background-size: 22px 19px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-color: transparent;
     border: none;
+    padding: 0;
 }
 
 .elements__button:hover {
     opacity: .5;
     cursor: pointer;
 }
-

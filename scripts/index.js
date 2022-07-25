@@ -101,6 +101,38 @@ function createCard({ name, link }) {
     }
     cardDelete.addEventListener('click', itemDelete);
 
+
+    const popupBtnImageFullScreen = cardItem.querySelector(".elements__button-image"); // Поиск кнопки откртыия полноразмерного изображения (Проектная 5)
+    const popupEleImageFullScreen = document.querySelector(".popup-image"); // Поиск попапа откртыия полноразмерного изображения (Проектная 5)
+
+
+    const popupImagePicture = document.querySelector('.popup-image__picture'); // Поиск в попапе полноразмерного изображения картинки (Проектная 5)
+    const popupImageName = document.querySelector('.popup-image__name'); // Поиск в попапе полноразмерного изображения названия (Проектная 5)
+
+    const cardImagePicture = cardItem.querySelector('.elements__image'); // Поиск в попапе полноразмерного изображения картинки (Проектная 5)
+    const cardImageName = cardItem.querySelector('.elements__title'); // Поиск в попапе полноразмерного изображения названия (Проектная 5)
+
+
+    // Функция открытия попапа полноразмерного изображения карточки (Проектная 5)
+
+    function popupOpenImageFullScreen() {
+        popupEleImageFullScreen.classList.add("popup_opened"); // Добавляем класс открытого попапа
+        popupImagePicture.src = cardImagePicture.src;
+        popupImageName.textContent = cardImageName.textContent;
+    }
+    popupBtnImageFullScreen.addEventListener("click", popupOpenImageFullScreen);
+
+
+    const popupBtnCloseImageFullScreen = document.querySelector(".popup__close-image"); // Поиск кнопки закрытия попапа полноразмерного изображения (Проектная 5)
+
+    //Функция закрытия попапа полноразмерного изображения (Проектная 5)
+
+    function popupClosImageFullScreen() {
+        popupEleImageFullScreen.classList.remove("popup_opened"); // Удаляем класс открытого попапа
+    }
+    popupBtnCloseImageFullScreen.addEventListener("click", popupClosImageFullScreen);
+
+
 }
 
 addCards();
@@ -127,3 +159,6 @@ function popupCloseAdd() {
     popupEleAdd.classList.remove("popup_opened"); // Удаляем класс открытого попапа
 }
 popupBtnCloseAdd.addEventListener("click", popupCloseAdd);
+
+
+

@@ -150,15 +150,40 @@ cardPopupButton.addEventListener('click', () => openPopup(cardPopup));
 imagePopupButtonClose.addEventListener('click', () => closePopup(imagePopup));
 
 
-//Функция лайка
+//Функция лайка (Проектная 5)
 function likeItem(evt) {
     evt.target.classList.toggle('elements__button_active');
 }
 
-//Функция удаления карточки
+//Функция удаления карточки (Проектная 5)
 function deleteItem(evt) {
     cardItemDelete = evt.target.closest('.elements__item');
     cardItemDelete.remove();
 }
+
+
+//Закрытие любого попапа нажатием на Esc (Проектная 6)
+document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+        const openedNowPopup = document.querySelector(".popup_opened");
+        closePopup(openedNowPopup);
+    }
+});
+
+//Функция закрытия любого попапа кликом на оверлей (Проектная 6)
+function closePopupOverlayClick(evt, popup) {
+    if (evt.target === evt.currentTarget) {
+        closePopup(popup);
+    }
+}
+
+//Навешиваем слушатель на попап полноразмерного изображения (Проектная 6)
+imagePopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, imagePopup));
+
+//Навешиваем слушатель на попап добавления карточки (Проектная 6)
+cardPopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, cardPopup));
+
+//Навешиваем слушатель на попап редактирования профиля (Проектная 6)
+profilePopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, profilePopup));
 
 

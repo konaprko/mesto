@@ -89,7 +89,6 @@ function renderCard(card, position) {
 //Функция создания шаблонных карточек из массива (Проектная 5)
 function addInitialCards() {
     initialCards.forEach(function (item) {
-        createCard(item.name, item.link);
         renderCard(createCard(item.name, item.link), cardPosition);
     });
 }
@@ -161,3 +160,5 @@ function deleteItem(evt) {
     cardItemDelete = evt.target.closest('.elements__item');
     cardItemDelete.remove();
 }
+
+

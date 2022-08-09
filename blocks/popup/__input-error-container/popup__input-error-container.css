@@ -1,0 +1,13 @@
+.popup__input-error-container {
+    width: 358px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-height: 37px;
+}
+
+@media (max-width: 720px) {
+    .popup__input-error-container {
+        width: 238px;
+    }
+}

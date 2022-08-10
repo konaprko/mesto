@@ -48,8 +48,8 @@ const formAddCard = document.querySelector('.popup__form-add'); // Поиск ф
 const newCardImage = document.querySelector('.popup__input_type_name-place'); // Поиск поля ввода названия места для новой карточки (Проектная 5)
 const newCardLink = document.querySelector('.popup__input_type_link-place'); // Поиск поля ввода ссылки на фотодля новой карточки (Проектная 5)
 const imagePopupButtonClose = document.querySelector(".popup__close-image"); // Поиск кнопки закрытия попапа полноразмерного изображения (Проектная 5)
-const profilePopupsubmitButton = profilePopup.querySelector('.popup__button'); // Ищем в форме редактирования профиля кнопку сохранить (Проектная 6)
-const cardPopupsubmitButton = cardPopup.querySelector('.popup__button'); // Ищем в форме добавления карточки кнопку сохранить (Проектная 6)
+const profilePopupSubmitButton = profilePopup.querySelector('.popup__button'); // Ищем в форме редактирования профиля кнопку сохранить (Проектная 6)
+const cardPopupSubmitButton = cardPopup.querySelector('.popup__button'); // Ищем в форме добавления карточки кнопку сохранить (Проектная 6)
 
 
 // Функция открытия любого попапа (Проектная 5)
@@ -69,8 +69,8 @@ function openProfileEditForm() {
     nameInput.value = profileName.textContent; // Передаем в поле формы имя профиля
     jobInput.value = profileJob.textContent; // Передаем в поле формы деятельность профиля
     openPopup(profilePopup);
-    profilePopupsubmitButton.removeAttribute('disabled'); // Включаем кнопку сохранить, чтобы кнопка была активна при открытии попапа (Проектная 6)
-    profilePopupsubmitButton.classList.remove('popup__button_disabled'); // Добавить класс активности (Проектная 6)
+    profilePopupSubmitButton.removeAttribute('disabled'); // Включаем кнопку сохранить, чтобы кнопка была активна при открытии попапа (Проектная 6)
+    profilePopupSubmitButton.classList.remove('popup__button_disabled'); // Добавить класс активности (Проектная 6)
 }
 profilePopupEditButton.addEventListener("click", openProfileEditForm);
 
@@ -139,8 +139,8 @@ cardPopupButtonClose.addEventListener('click', () => closePopup(cardPopup));
 //Функция добавления новой карточки через форму (Проектная 5)
 function addNewCard() {
     formAddCard.addEventListener('submit', function (evt) {
-        cardPopupsubmitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы не было возможности добавить карточку несколько  раз (Проектная 6)
-        cardPopupsubmitButton.classList.add('popup__button_disabled'); // Добавить класс неактивности (Проектная 6)
+        cardPopupSubmitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы не было возможности добавить карточку несколько  раз (Проектная 6)
+        cardPopupSubmitButton.classList.add('popup__button_disabled'); // Добавить класс неактивности (Проектная 6)
         const newCardCreate = createCard(newCardImage.value, newCardLink.value);
         renderCard(newCardCreate, cardPosition);
         closePopup(cardPopup);

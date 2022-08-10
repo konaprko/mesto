@@ -48,15 +48,20 @@ const formAddCard = document.querySelector('.popup__form-add'); // Поиск ф
 const newCardImage = document.querySelector('.popup__input_type_name-place'); // Поиск поля ввода названия места для новой карточки (Проектная 5)
 const newCardLink = document.querySelector('.popup__input_type_link-place'); // Поиск поля ввода ссылки на фотодля новой карточки (Проектная 5)
 const imagePopupButtonClose = document.querySelector(".popup__close-image"); // Поиск кнопки закрытия попапа полноразмерного изображения (Проектная 5)
+const profilePopupsubmitButton = profilePopup.querySelector('.popup__button'); // Ищем в форме редактирования профиля кнопку сохранить (Проектная 6)
+const cardPopupsubmitButton = cardPopup.querySelector('.popup__button'); // Ищем в форме добавления карточки кнопку сохранить (Проектная 6)
+
 
 // Функция открытия любого попапа (Проектная 5)
 function openPopup(popup) {
     popup.classList.add('popup_opened'); // Добавляем класс открытого попапа
+    document.addEventListener('keydown', closePopupEscClick)
 }
 
 //Функция закрытия попапа (Проектная 5)
 function closePopup(popup) {
     popup.classList.remove("popup_opened"); // Удаляем класс открытого попапа
+    document.removeEventListener('keydown', closePopupEscClick);
 }
 
 // Функция открытия формы редактирования профиля(Проектная 4)
@@ -64,9 +69,8 @@ function openProfileEditForm() {
     nameInput.value = profileName.textContent; // Передаем в поле формы имя профиля
     jobInput.value = profileJob.textContent; // Передаем в поле формы деятельность профиля
     openPopup(profilePopup);
-    const submitButton = profilePopup.querySelector('.popup__button'); // Ищем в форме редактирования профиля кнопку сохранить (Проектная 6)
-    submitButton.removeAttribute('disabled'); // Включаем кнопку сохранить, чтобы кнопка была активна при открытии попапа (Проектная 6)
-    submitButton.classList.remove('popup__button_disabled'); // Добавить класс активности (Проектная 6)
+    profilePopupsubmitButton.removeAttribute('disabled'); // Включаем кнопку сохранить, чтобы кнопка была активна при открытии попапа (Проектная 6)
+    profilePopupsubmitButton.classList.remove('popup__button_disabled'); // Добавить класс активности (Проектная 6)
 }
 profilePopupEditButton.addEventListener("click", openProfileEditForm);
 
@@ -75,7 +79,6 @@ profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup)
 
 //Сохранение данных из попапа в профиль юзера (Проектная 4)
 function formSubmitHandler(evt) {
-    //evt.preventDefault();
     profileName.textContent = nameInput.value; // Передаем данные из формы в имя профиля
     profileJob.textContent = jobInput.value; // Передаем данные из формы в деятельность профиля
     closePopup(profilePopup);
@@ -136,15 +139,12 @@ cardPopupButtonClose.addEventListener('click', () => closePopup(cardPopup));
 //Функция добавления новой карточки через форму (Проектная 5)
 function addNewCard() {
     formAddCard.addEventListener('submit', function (evt) {
-        //evt.preventDefault();
-        const submitButton = cardPopup.querySelector('.popup__button'); // Ищем в форме добавления карточки кнопку сохранить (Проектная 6)
-        submitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы не было возможности добавить карточку несколько  раз (Проектная 6)
+        cardPopupsubmitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы не было возможности добавить карточку несколько  раз (Проектная 6)
+        cardPopupsubmitButton.classList.add('popup__button_disabled'); // Добавить класс неактивности (Проектная 6)
         const newCardCreate = createCard(newCardImage.value, newCardLink.value);
         renderCard(newCardCreate, cardPosition);
         closePopup(cardPopup);
         evt.target.reset();
-        submitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы кнопка была неактивна при новом открытии попапа после добавления карточки(Проектная 6)
-        submitButton.classList.add('popup__button_disabled'); // Добавить класс неактивности (Проектная 6)
     });
 }
 
@@ -169,12 +169,13 @@ function deleteItem(evt) {
 }
 
 //Закрытие любого попапа нажатием на Esc (Проектная 6)
-document.addEventListener('keydown', function (evt) {
+function closePopupEscClick(evt) {
+    const openedNowPopup = document.querySelector(".popup_opened"); // Ищем в документе открытый попап (Проектная 6)
     if (evt.key === 'Escape') {
-        const openedNowPopup = document.querySelector(".popup_opened");
         closePopup(openedNowPopup);
     }
-});
+}
+
 
 //Функция закрытия любого попапа кликом на оверлей (Проектная 6)
 function closePopupOverlayClick(evt, popup) {

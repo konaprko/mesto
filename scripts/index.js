@@ -170,8 +170,8 @@ function deleteItem(evt) {
 
 //Закрытие любого попапа нажатием на Esc (Проектная 6)
 function closePopupEscClick(evt) {
-    const openedNowPopup = document.querySelector(".popup_opened"); // Ищем в документе открытый попап (Проектная 6)
     if (evt.key === 'Escape') {
+        const openedNowPopup = document.querySelector(".popup_opened"); // Ищем в документе открытый попап (Проектная 6)
         closePopup(openedNowPopup);
     }
 }

@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const profilePopupEditButton = document.querySelector(".profile__button-edit"); // Поиск кнопки "изменить на странице" (Проектная 4)
 const profilePopup = document.querySelector(".popup-edit"); // Поиск попапа изменения профиля на странице (Проектная 4)
@@ -8,8 +10,6 @@ const jobInput = document.querySelector(".popup__input_type_job"); // Поиск
 const profileName = document.querySelector(".profile__title"); // Поиск имени профиля на странице (Проектная 4)
 const profileJob = document.querySelector(".profile__subtitle"); // Поиск деятельности на странице (Проектная 4)
 
-
-//Массив карточек для инициализации (Проектная 5)
 const initialCards = [
     {
         name: 'Архыз',
@@ -36,11 +36,19 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-const cardTemplate = document.querySelector("#elements__template").content; //Переменная для хранения template-элемента (Проектная 5)
+
+const configurationOfClasses =
+{
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+};
+
 const cardPosition = document.querySelector(".elements__cards"); //Переменная определения места вставки template-элемента (Проектная 5)
 const imagePopup = document.querySelector(".popup-image"); // Поиск попапа откртыия полноразмерного изображения (Проектная 5)
-const imagePopupPicture = document.querySelector('.popup-image__picture'); // Поиск в попапе полноразмерного изображения картинки (Проектная 5)
-const imagePopupName = document.querySelector('.popup-image__name'); // Поиск в попапе полноразмерного изображения названия (Проектная 5)
 const cardPopupButton = document.querySelector(".profile__button-add"); // Поиск кнопки "Добавить публикацию" (Проектная 5)
 const cardPopup = document.querySelector(".popup-add"); // Поиск попапа добавления публикации на странице (Проектная 5)
 const cardPopupButtonClose = document.querySelector(".popup__close-add"); // Поиск кнопки закрытия попапа добавления на странице (Проектная 5)
@@ -92,47 +100,6 @@ function renderCard(card, position) {
 }
 
 
-//Функция создания шаблонных карточек из массива (Проектная 5)
-function addInitialCards() {
-    initialCards.forEach(function (item) {
-        renderCard(createCard(item.name, item.link), cardPosition);
-    });
-}
-
-addInitialCards();
-
-//Функция создания карточки с внесением названия, фотографии, возможности лайкать, удалять, открывать полноразмерный вариант (Проектная 5)
-function createCard(name, link) {
-    const cardItem = cardTemplate.querySelector(".elements__item").cloneNode(true);
-    const cardImagePicture = cardItem.querySelector('.elements__image'); // Поиск в карточке изображения (оно же кнопка открытия попапа с большим фото) (Проектная 5)
-    const cardImageName = cardItem.querySelector('.elements__title'); // Поиск в карточке названия  (Проектная 5)
-    const buttonLike = cardItem.querySelector('.elements__button');
-    const cardDelete = cardItem.querySelector('.elements__button-remove');
-
-    cardImageName.textContent = name; //Переносим название в карточку
-    cardImagePicture.src = link; //Переносим ссылку на фото в карточку
-    cardImagePicture.setAttribute('alt', `${name}`); //Переносим название в атрибут alt
-
-    //Навешиваем слушатель на кнопку лайка
-    buttonLike.addEventListener('click', likeItem)
-
-    //Навешиваем слушатель на кнопку удаления
-    cardDelete.addEventListener('click', deleteItem);
-
-    //  Открытие полноразмерного изображения карточки (Проектная 5)
-    function openFullScreenImage() {
-        imagePopupPicture.src = cardImagePicture.src;
-        imagePopupName.textContent = cardImageName.textContent;
-        imagePopupPicture.setAttribute('alt', `${name}`);
-        openPopup(imagePopup);
-    }
-
-    cardImagePicture.addEventListener("click", openFullScreenImage);
-
-    return cardItem;
-}
-
-
 // Закрытие формы добавления карточки нажатием на крестик (Проектная 5)
 cardPopupButtonClose.addEventListener('click', () => closePopup(cardPopup));
 
@@ -141,8 +108,12 @@ function addNewCard() {
     formAddCard.addEventListener('submit', function (evt) {
         cardPopupSubmitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы не было возможности добавить карточку несколько  раз (Проектная 6)
         cardPopupSubmitButton.classList.add('popup__button_disabled'); // Добавить класс неактивности (Проектная 6)
-        const newCardCreate = createCard(newCardImage.value, newCardLink.value);
-        renderCard(newCardCreate, cardPosition);
+        const dataFromForm = {}; //Создаем объект на вход экземляра класса (Проектная 7) 
+        dataFromForm.name = newCardImage.value; //Присваиваем значение ключу имя данные из поля ввода (Проектная 7)
+        dataFromForm.link = newCardLink.value //Присваиваем значение ключу ссылка данные из поля ввода (Проектная 7)
+        const cardFromForm = new Card(dataFromForm, '#elements__template'); //создаем экземпляр класса Card (Проектная 7)
+        const cardElementFromForm = cardFromForm.generateCard(); //генерируем карточку (Проектная 7)
+        renderCard(cardElementFromForm, cardPosition) // Добавляем карточку в разметку (Проектаня 7)
         closePopup(cardPopup);
         evt.target.reset();
     });
@@ -150,23 +121,14 @@ function addNewCard() {
 
 addNewCard();
 
+
+
 //Открытие попапа добавления карточки
 cardPopupButton.addEventListener('click', () => openPopup(cardPopup));
 
 //Закрытие попапа полноразмерного изображения (Проектная 5)
 imagePopupButtonClose.addEventListener('click', () => closePopup(imagePopup));
 
-
-//Функция лайка (Проектная 5)
-function likeItem(evt) {
-    evt.target.classList.toggle('elements__button_active');
-}
-
-//Функция удаления карточки (Проектная 5)
-function deleteItem(evt) {
-    cardItemDelete = evt.target.closest('.elements__item');
-    cardItemDelete.remove();
-}
 
 //Закрытие любого попапа нажатием на Esc (Проектная 6)
 function closePopupEscClick(evt) {
@@ -193,4 +155,17 @@ cardPopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, cardPop
 //Навешиваем слушатель на попап редактирования профиля (Проектная 6)
 profilePopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, profilePopup));
 
+initialCards.forEach((item) => {
+    const card = new Card(item, '#elements__template');
+    const cardElement = card.generateCard();
+    renderCard(cardElement, cardPosition)
+});
 
+//Создаем экземпляр класса валидации  формы редактирования профиля (Проектная 7)
+const formProfileEditValidation = new FormValidator(configurationOfClasses, formProfileEdit);
+formProfileEditValidation.enableValidation();
+
+
+//Создаем экземпляр класса валидации формы добавения карточки (Проектная 7)
+const formAddCardValidation = new FormValidator(configurationOfClasses, formAddCard);
+formAddCardValidation.enableValidation();

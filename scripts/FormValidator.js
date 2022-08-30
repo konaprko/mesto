@@ -60,6 +60,14 @@ export default class FormValidator {
         }
     };
 
+    // Метод очистки сообщений в формах при открытии попапа (Проектная 7)
+    resetValidation() {
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement)
+        });
+
+    }
+
     _setEventListeners() {
         this._toggleButtonState();
         this._inputList.forEach((inputElement) => {
@@ -78,8 +86,3 @@ export default class FormValidator {
         this._setEventListeners();
     };
 }
-
-
-
-
-

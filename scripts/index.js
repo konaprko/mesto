@@ -73,6 +73,7 @@ function openProfileEditForm() {
     jobInput.value = profileJob.textContent; // Передаем в поле формы деятельность профиля
     openPopup(profilePopup);
     formProfileEditValidation.activateButton();
+    formProfileEditValidation.resetValidation();
 }
 profilePopupEditButton.addEventListener("click", openProfileEditForm);
 
@@ -100,6 +101,7 @@ function createCard(item) {
 function addNewCard() {
     formAddCard.addEventListener('submit', function (evt) {
         formAddCardValidation.disactivateButton();
+        formAddCardValidation.resetValidation();
         const dataFromForm = {}; //Создаем объект на вход экземляра класса (Проектная 7) 
         dataFromForm.name = newCardImage.value; //Присваиваем значение ключу имя данные из поля ввода (Проектная 7)
         dataFromForm.link = newCardLink.value //Присваиваем значение ключу ссылка данные из поля ввода (Проектная 7)
@@ -152,3 +154,5 @@ popups.forEach((popup) => {
         }
     })
 })
+
+

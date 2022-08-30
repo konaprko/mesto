@@ -76,9 +76,6 @@ function openProfileEditForm() {
 }
 profilePopupEditButton.addEventListener("click", openProfileEditForm);
 
-//Закрытие формы редактирования профиля нажатием на крестик
-//profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup));
-
 //Сохранение данных из попапа в профиль юзера (Проектная 4)
 function handleProfileFormSubmit(evt) {
     profileName.textContent = nameInput.value; // Передаем данные из формы в имя профиля
@@ -87,16 +84,10 @@ function handleProfileFormSubmit(evt) {
 }
 formProfileEdit.addEventListener('submit', handleProfileFormSubmit);
 
-
 //Функция вставки любой карточки в разметку страницы (Проектная 5)
 function renderCard(card, position) {
     position.prepend(card);
 }
-
-
-// Закрытие формы добавления карточки нажатием на крестик (Проектная 5)
-//cardPopupButtonClose.addEventListener('click', () => closePopup(cardPopup));
-
 
 //Функция создания экземпляра класса Card (Проектная 7)
 function createCard(item) {
@@ -117,17 +108,10 @@ function addNewCard() {
         evt.target.reset();
     });
 }
-
 addNewCard();
-
-
 
 //Открытие попапа добавления карточки
 cardPopupButton.addEventListener('click', () => openPopup(cardPopup));
-
-//Закрытие попапа полноразмерного изображения (Проектная 5)
-//imagePopupButtonClose.addEventListener('click', () => closePopup(imagePopup));
-
 
 //Закрытие любого попапа нажатием на Esc (Проектная 6)
 function closePopupEscClick(evt) {
@@ -137,7 +121,6 @@ function closePopupEscClick(evt) {
     }
 }
 
-
 //Размещаем 6 карточек из массива (Проектная 7)
 initialCards.forEach((item) => {
     renderCard(createCard(item), cardPosition);
@@ -146,7 +129,6 @@ initialCards.forEach((item) => {
 //Создаем экземпляр класса валидации  формы редактирования профиля (Проектная 7)
 const formProfileEditValidation = new FormValidator(configurationOfClasses, formProfileEdit);
 formProfileEditValidation.enableValidation();
-
 
 //Создаем экземпляр класса валидации формы добавения карточки (Проектная 7)
 const formAddCardValidation = new FormValidator(configurationOfClasses, formAddCard);

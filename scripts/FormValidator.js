@@ -31,7 +31,6 @@ export default class FormValidator {
         }
     };
 
-
     // Метод проверки наличия невалидного поля (Проектная 7)
     _hasInvalidInput() {
         return this._inputList.some((inputElement) => {
@@ -78,9 +77,6 @@ export default class FormValidator {
     enableValidation() {
         this._setEventListeners();
     };
-
-
-
 }
 
 

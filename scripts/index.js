@@ -3,7 +3,6 @@ import FormValidator from "./FormValidator.js";
 
 const profilePopupEditButton = document.querySelector(".profile__button-edit"); // Поиск кнопки "изменить на странице" (Проектная 4)
 const profilePopup = document.querySelector(".popup-edit"); // Поиск попапа изменения профиля на странице (Проектная 4)
-const profilePopupCloseButton = document.querySelector(".popup__close-edit"); // Поиск кнопки закрытия попапа на странице (Проектная 4)
 const formProfileEdit = document.querySelector(".popup__form-edit"); // Поиск формы в документе (Проектная 4)
 const nameInput = document.querySelector(".popup__input_type_name"); // Поиск поля формы для ввода имени (Проектная 4)
 const jobInput = document.querySelector(".popup__input_type_job"); // Поиск поля формы для ввода деятельности (Проектная 4)
@@ -51,14 +50,10 @@ const cardPosition = document.querySelector(".elements__cards"); //Переме�
 const imagePopup = document.querySelector(".popup-image"); // Поиск попапа откртыия полноразмерного изображения (Проектная 5)
 const cardPopupButton = document.querySelector(".profile__button-add"); // Поиск кнопки "Добавить публикацию" (Проектная 5)
 const cardPopup = document.querySelector(".popup-add"); // Поиск попапа добавления публикации на странице (Проектная 5)
-const cardPopupButtonClose = document.querySelector(".popup__close-add"); // Поиск кнопки закрытия попапа добавления на странице (Проектная 5)
 const formAddCard = document.querySelector('.popup__form-add'); // Поиск формы добавления карточки (Проектная 5)
 const newCardImage = document.querySelector('.popup__input_type_name-place'); // Поиск поля ввода названия места для новой карточки (Проектная 5)
 const newCardLink = document.querySelector('.popup__input_type_link-place'); // Поиск поля ввода ссылки на фотодля новой карточки (Проектная 5)
-const imagePopupButtonClose = document.querySelector(".popup__close-image"); // Поиск кнопки закрытия попапа полноразмерного изображения (Проектная 5)
-const profilePopupSubmitButton = profilePopup.querySelector('.popup__button'); // Ищем в форме редактирования профиля кнопку сохранить (Проектная 6)
-const cardPopupSubmitButton = cardPopup.querySelector('.popup__button'); // Ищем в форме добавления карточки кнопку сохранить (Проектная 6)
-
+const popups = document.querySelectorAll('.popup') // Поиск всех попапов на странице (Проектная 7)
 
 // Функция открытия любого попапа (Проектная 5)
 function openPopup(popup) {
@@ -77,21 +72,20 @@ function openProfileEditForm() {
     nameInput.value = profileName.textContent; // Передаем в поле формы имя профиля
     jobInput.value = profileJob.textContent; // Передаем в поле формы деятельность профиля
     openPopup(profilePopup);
-    profilePopupSubmitButton.removeAttribute('disabled'); // Включаем кнопку сохранить, чтобы кнопка была активна при открытии попапа (Проектная 6)
-    profilePopupSubmitButton.classList.remove('popup__button_disabled'); // Добавить класс активности (Проектная 6)
+    formProfileEditValidation.activateButton();
 }
 profilePopupEditButton.addEventListener("click", openProfileEditForm);
 
 //Закрытие формы редактирования профиля нажатием на крестик
-profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup));
+//profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup));
 
 //Сохранение данных из попапа в профиль юзера (Проектная 4)
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
     profileName.textContent = nameInput.value; // Передаем данные из формы в имя профиля
     profileJob.textContent = jobInput.value; // Передаем данные из формы в деятельность профиля
     closePopup(profilePopup);
 }
-formProfileEdit.addEventListener('submit', formSubmitHandler);
+formProfileEdit.addEventListener('submit', handleProfileFormSubmit);
 
 
 //Функция вставки любой карточки в разметку страницы (Проектная 5)
@@ -101,19 +95,24 @@ function renderCard(card, position) {
 
 
 // Закрытие формы добавления карточки нажатием на крестик (Проектная 5)
-cardPopupButtonClose.addEventListener('click', () => closePopup(cardPopup));
+//cardPopupButtonClose.addEventListener('click', () => closePopup(cardPopup));
+
+
+//Функция создания экземпляра класса Card (Проектная 7)
+function createCard(item) {
+    const card = new Card(item, '#elements__template', handleCardClick);
+    const cardElement = card.generateCard();
+    return cardElement;
+}
 
 //Функция добавления новой карточки через форму (Проектная 5)
 function addNewCard() {
     formAddCard.addEventListener('submit', function (evt) {
-        cardPopupSubmitButton.setAttribute('disabled', 'disabled'); // Отключаем кнопку сохранить, чтобы не было возможности добавить карточку несколько  раз (Проектная 6)
-        cardPopupSubmitButton.classList.add('popup__button_disabled'); // Добавить класс неактивности (Проектная 6)
+        formAddCardValidation.disactivateButton();
         const dataFromForm = {}; //Создаем объект на вход экземляра класса (Проектная 7) 
         dataFromForm.name = newCardImage.value; //Присваиваем значение ключу имя данные из поля ввода (Проектная 7)
         dataFromForm.link = newCardLink.value //Присваиваем значение ключу ссылка данные из поля ввода (Проектная 7)
-        const cardFromForm = new Card(dataFromForm, '#elements__template'); //создаем экземпляр класса Card (Проектная 7)
-        const cardElementFromForm = cardFromForm.generateCard(); //генерируем карточку (Проектная 7)
-        renderCard(cardElementFromForm, cardPosition) // Добавляем карточку в разметку (Проектаня 7)
+        renderCard(createCard(dataFromForm), cardPosition); // Добавляем карточку в разметку (Проектаня 7)
         closePopup(cardPopup);
         evt.target.reset();
     });
@@ -127,7 +126,7 @@ addNewCard();
 cardPopupButton.addEventListener('click', () => openPopup(cardPopup));
 
 //Закрытие попапа полноразмерного изображения (Проектная 5)
-imagePopupButtonClose.addEventListener('click', () => closePopup(imagePopup));
+//imagePopupButtonClose.addEventListener('click', () => closePopup(imagePopup));
 
 
 //Закрытие любого попапа нажатием на Esc (Проектная 6)
@@ -139,26 +138,9 @@ function closePopupEscClick(evt) {
 }
 
 
-//Функция закрытия любого попапа кликом на оверлей (Проектная 6)
-function closePopupOverlayClick(evt, popup) {
-    if (evt.target === evt.currentTarget) {
-        closePopup(popup);
-    }
-}
-
-//Навешиваем слушатель на попап полноразмерного изображения (Проектная 6)
-imagePopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, imagePopup));
-
-//Навешиваем слушатель на попап добавления карточки (Проектная 6)
-cardPopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, cardPopup));
-
-//Навешиваем слушатель на попап редактирования профиля (Проектная 6)
-profilePopup.addEventListener('click', (evt) => closePopupOverlayClick(evt, profilePopup));
-
+//Размещаем 6 карточек из массива (Проектная 7)
 initialCards.forEach((item) => {
-    const card = new Card(item, '#elements__template');
-    const cardElement = card.generateCard();
-    renderCard(cardElement, cardPosition)
+    renderCard(createCard(item), cardPosition);
 });
 
 //Создаем экземпляр класса валидации  формы редактирования профиля (Проектная 7)
@@ -169,3 +151,22 @@ formProfileEditValidation.enableValidation();
 //Создаем экземпляр класса валидации формы добавения карточки (Проектная 7)
 const formAddCardValidation = new FormValidator(configurationOfClasses, formAddCard);
 formAddCardValidation.enableValidation();
+
+//Функция обработчик полноразмерного попапа (Проектная 7)
+function handleCardClick(name, link) {
+    document.querySelector(".popup-image__picture").src = link;
+    document.querySelector(".popup-image__name").textContent = name;
+    openPopup(imagePopup);
+}
+
+//Универсальная функция закрытия попапов кликом на оверлей и на крестик (Проектная 7)
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closePopup(popup)
+        }
+    })
+})

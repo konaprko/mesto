@@ -39,15 +39,25 @@ export default class FormValidator {
         });
     };
 
+    // Метод дизактивации кнопки
+    disactivateButton() {
+        this._buttonElement.setAttribute('disabled', 'disabled');
+        this._buttonElement.classList.add(this._validationConfigurator.inactiveButtonClass);
+    }
+
+    //Метод активации кнопки
+    activateButton() {
+        this._buttonElement.removeAttribute('disabled');
+        this._buttonElement.classList.remove(this._validationConfigurator.inactiveButtonClass);
+    }
+
+
     // Метод активации/дизактивации кнопки в форме (Проектная 7)
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.setAttribute('disabled', 'disabled');
-            this._buttonElement.classList.add(this._validationConfigurator.inactiveButtonClass); // Добавить класс неактивности
-
+            this.disactivateButton()
         } else {
-            this._buttonElement.removeAttribute('disabled');
-            this._buttonElement.classList.remove(this._validationConfigurator.inactiveButtonClass);
+            this.activateButton()
         }
     };
 
@@ -61,11 +71,19 @@ export default class FormValidator {
         });
         this._formElement.addEventListener('submit', (event) => {
             event.preventDefault();
-        })
+        });
     };
 
     // Метод валидации форм (Проектная 7)
     enableValidation() {
         this._setEventListeners();
     };
+
+
+
 }
+
+
+
+
+

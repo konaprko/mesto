@@ -16,8 +16,8 @@ const formAddCard = document.querySelector('.popup__form-add'); // Поиск ф
 const newCardImage = document.querySelector('.popup__input_type_name-place'); // Поиск поля ввода названия места для новой карточки (Проектная 5)
 const newCardLink = document.querySelector('.popup__input_type_link-place'); // Поиск поля ввода ссылки на фотодля новой карточки (Проектная 5)
 const popups = document.querySelectorAll('.popup') // Поиск всех попапов на странице (Проектная 7)
-const imagePopupPicture = document.querySelector(".popup-image__picture")
-const imagePopupName = document.querySelector(".popup-image__name")
+const imagePopupPicture = document.querySelector(".popup-image__picture");
+const imagePopupName = document.querySelector(".popup-image__name");
 
 const initialCards = [
     {

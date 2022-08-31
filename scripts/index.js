@@ -8,6 +8,16 @@ const nameInput = document.querySelector(".popup__input_type_name"); // Поис
 const jobInput = document.querySelector(".popup__input_type_job"); // Поиск поля формы для ввода деятельности (Проектная 4)
 const profileName = document.querySelector(".profile__title"); // Поиск имени профиля на странице (Проектная 4)
 const profileJob = document.querySelector(".profile__subtitle"); // Поиск деятельности на странице (Проектная 4)
+const cardPosition = document.querySelector(".elements__cards"); //Переменная определения места вставки template-элемента (Проектная 5)
+const imagePopup = document.querySelector(".popup-image"); // Поиск попапа откртыия полноразмерного изображения (Проектная 5)
+const cardPopupButton = document.querySelector(".profile__button-add"); // Поиск кнопки "Добавить публикацию" (Проектная 5)
+const cardPopup = document.querySelector(".popup-add"); // Поиск попапа добавления публикации на странице (Проектная 5)
+const formAddCard = document.querySelector('.popup__form-add'); // Поиск формы добавления карточки (Проектная 5)
+const newCardImage = document.querySelector('.popup__input_type_name-place'); // Поиск поля ввода названия места для новой карточки (Проектная 5)
+const newCardLink = document.querySelector('.popup__input_type_link-place'); // Поиск поля ввода ссылки на фотодля новой карточки (Проектная 5)
+const popups = document.querySelectorAll('.popup') // Поиск всех попапов на странице (Проектная 7)
+const imagePopupPicture = document.querySelector(".popup-image__picture")
+const imagePopupName = document.querySelector(".popup-image__name")
 
 const initialCards = [
     {
@@ -45,15 +55,6 @@ const configurationOfClasses =
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 };
-
-const cardPosition = document.querySelector(".elements__cards"); //Переменная определения места вставки template-элемента (Проектная 5)
-const imagePopup = document.querySelector(".popup-image"); // Поиск попапа откртыия полноразмерного изображения (Проектная 5)
-const cardPopupButton = document.querySelector(".profile__button-add"); // Поиск кнопки "Добавить публикацию" (Проектная 5)
-const cardPopup = document.querySelector(".popup-add"); // Поиск попапа добавления публикации на странице (Проектная 5)
-const formAddCard = document.querySelector('.popup__form-add'); // Поиск формы добавления карточки (Проектная 5)
-const newCardImage = document.querySelector('.popup__input_type_name-place'); // Поиск поля ввода названия места для новой карточки (Проектная 5)
-const newCardLink = document.querySelector('.popup__input_type_link-place'); // Поиск поля ввода ссылки на фотодля новой карточки (Проектная 5)
-const popups = document.querySelectorAll('.popup') // Поиск всех попапов на странице (Проектная 7)
 
 // Функция открытия любого попапа (Проектная 5)
 function openPopup(popup) {
@@ -138,8 +139,9 @@ formAddCardValidation.enableValidation();
 
 //Функция обработчик полноразмерного попапа (Проектная 7)
 function handleCardClick(name, link) {
-    document.querySelector(".popup-image__picture").src = link;
-    document.querySelector(".popup-image__name").textContent = name;
+    imagePopupPicture.src = link;
+    imagePopupPicture.alt = name;
+    imagePopupName.textContent = name;
     openPopup(imagePopup);
 }
 

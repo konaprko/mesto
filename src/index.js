@@ -1,9 +1,9 @@
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
-import Section from "../components/Section.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/UserInfo.js";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
+import Section from "./components/Section.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js";
 import {
     profilePopupEditButton,
     formProfileEdit,
@@ -18,7 +18,9 @@ import {
     profileJob,
     initialCards,
     configurationOfClasses
-} from "../utils/constants.js";
+} from "./utils/constants.js";
+
+import './pages/index.css';
 
 //Функция создания экземпляра класса Card (Проектная 7)
 function createCard(item) {

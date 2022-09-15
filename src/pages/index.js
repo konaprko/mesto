@@ -1,26 +1,21 @@
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 import {
     profilePopupEditButton,
     formProfileEdit,
-    cardPosition,
     cardPopupButton,
     formAddCard,
-    newCardImage,
-    newCardLink,
     nameInput,
     jobInput,
-    profileName,
-    profileJob,
     initialCards,
     configurationOfClasses
-} from "./utils/constants.js";
+} from "../utils/constants.js";
 
-import './pages/index.css';
+import './index.css';
 
 //Функция создания экземпляра класса Card (Проектная 7)
 function createCard(item) {
@@ -50,7 +45,7 @@ const sectionCardList = new Section({
         sectionCardList.setItem(createCard(item));
     },
 },
-    cardPosition
+    '.elements__cards',
 );
 
 sectionCardList.renderItems();
@@ -60,16 +55,17 @@ const fullScreenImagePopup = new PopupWithImage('.popup-image');
 fullScreenImagePopup.setEventListeners();
 
 
+
 //Экземпляр класса попапа добавления карточки (Проектная 8)
 const addCardPopup = new PopupWithForm({
     popupSelector: '.popup-add',
-    handleFormSubmit: () => {
-        formAddCardValidation.disactivateButton();
-        formAddCardValidation.resetValidation();
-        const formData = {}; //Создаем объект на вход экземляра класса (Проектная 7) 
-        formData.name = newCardImage.value; //Присваиваем значение ключу имя данные из поля ввода (Проектная 7)
-        formData.link = newCardLink.value;
+    handleFormSubmit: (data) => {
+        addCardPopup._getInputValues();
+        const formData = {}; //Создаем объект на вход экземляра класса (Проектная 7)  
+        formData.name = data.inputNamePlace; //Присваиваем значение ключу имя данные из поля ввода (Проектная 7) 
+        formData.link = data.inputLinkPlace;
         sectionCardList.setItem(createCard(formData));
+        formAddCardValidation.disactivateButton();
     }
 });
 
@@ -78,10 +74,15 @@ addCardPopup.setEventListeners();
 
 //Открытие экземпляра класса попапа добавения карточки нажатием на кнопку (Проектная 8)
 cardPopupButton.addEventListener("click", function () {
+    formAddCardValidation.disactivateButton();
     addCardPopup.open();
+    formAddCardValidation.resetValidation();
 });
 
-const userInfo = new UserInfo(profileName, profileJob);
+const userInfo = new UserInfo({
+    name: '.profile__title',
+    job: '.profile__subtitle',
+});
 
 // Создание экземпляра класса попап редактирования профиля (Проектная 8)
 const popupEdit = new PopupWithForm({
@@ -102,3 +103,4 @@ profilePopupEditButton.addEventListener("click", () => {
 })
 
 popupEdit.setEventListeners();
+

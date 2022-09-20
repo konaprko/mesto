@@ -60,16 +60,16 @@ fullScreenImagePopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
     popupSelector: '.popup-add',
     handleFormSubmit: (data) => {
-        addCardPopup._getInputValues();
-        const formData = {}; //Создаем объект на вход экземляра класса (Проектная 7)  
-        formData.name = data.inputNamePlace; //Присваиваем значение ключу имя данные из поля ввода (Проектная 7) 
-        formData.link = data.inputLinkPlace;
-        sectionCardList.setItem(createCard(formData));
         formAddCardValidation.disactivateButton();
+        //Дизактивация кнопки здесь необходима, чтобы не было возможности добавить пустую карточку в момент отправки формы зажатием Enter
+        const formData = {
+            name: data.inputNamePlace,
+            link: data.inputLinkPlace,
+        };
+        sectionCardList.setItem(createCard(formData));
     }
 });
 
-//Устанавливаем слушатели попапу добавления карточки (Проектная 8)
 addCardPopup.setEventListeners();
 
 //Открытие экземпляра класса попапа добавения карточки нажатием на кнопку (Проектная 8)

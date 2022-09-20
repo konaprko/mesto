@@ -5,6 +5,7 @@ export default class Popup {
         this._escapeClose = this._closeByEsc.bind(this);
     }
 
+
     //Метод открытия попапа
     open() {
         this._popup.classList.add('popup_opened');
@@ -16,6 +17,7 @@ export default class Popup {
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._escapeClose);
     }
+
 
     //Метод закрытия попапа по ESC
     _closeByEsc(event) {

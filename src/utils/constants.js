@@ -4,34 +4,9 @@ export const cardPopupButton = document.querySelector(".profile__button-add"); /
 export const formAddCard = document.querySelector('.popup__form-add'); // Поиск формы добавления карточки (Проектная 5)
 export const nameInput = document.querySelector(".popup__input_type_name"); // Поиск поля формы для ввода имени (Проектная 4)
 export const jobInput = document.querySelector(".popup__input_type_job"); // Поиск поля формы для ввода деятельности (Проектная 4)
-
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-
-];
+export const formAvatarEdit = document.querySelector(".popup__form-avatar-edit"); // Поиск формы в документе (Проектная 4)
+export const avatar = document.querySelector(".profile__image"); // Поиск аватара в документе (Проектная 9)
+export const buttonEditAvatar = document.querySelector('.profile__avatar-button-edit'); // Поиск кнопки аватара в документе (Проектная 9)
 
 export const configurationOfClasses =
 {
@@ -41,4 +16,12 @@ export const configurationOfClasses =
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
+};
+
+export const apiData = {
+    url: "https://mesto.nomoreparties.co/v1/cohort-54",
+    headers: {
+        "content-type": "application/json",
+        authorization: "f8352379-b969-433a-b620-5690a6444b36",
+    },
 };

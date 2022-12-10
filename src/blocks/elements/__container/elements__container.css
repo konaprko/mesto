@@ -1,8 +1,9 @@
 .elements__container {
     display: flex;
-    padding-top: 23px;
-    padding-bottom: 27px;
+    padding-top: 15px;
+    padding-bottom: 30px;
     max-width: 246px;
+    max-height: 35px;
     margin: 0 auto;
     justify-content: space-between;
 }

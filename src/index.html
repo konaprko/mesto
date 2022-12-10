@@ -18,13 +18,13 @@
       <section class="profile">
 
         <div class="profile__info">
-          <img class="profile__image" src="<%=require('./images/profile-image.jpg')%>" alt="Аватар">
-
+          <img class="profile__image" alt="Аватар">
+          <button class="profile__avatar-button-edit"></button>
 
           <div class="profile__head">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__button-edit" type="button" aria-label="Редактировать профиль"></button>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <p class="profile__subtitle"></p>
           </div>
         </div>
         <button class="profile__button-add" type="button" aria-label="Добавить публикацию"></button>
@@ -62,7 +62,7 @@
         </div>
 
 
-        <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
+        <button class="popup__button popup__button_edit" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
       <button class="popup__close popup__close-edit" type="button"
         aria-label="Закрыть форму редактирования профиля"></button>
@@ -106,12 +106,46 @@
     </div>
   </div>
 
+  <div class="popup popup-delete">
+    <div class="popup__container">
+      <div class="popup__title popup__delete-title">Вы уверены?</div>
+      <form name="delete-form" action="#" class="popup__form" novalidate>
+        <button class="popup__button" type="submit" aria-label="Подтверждение удаления">Да</button>
+      </form>
+      <button class="popup__close popup__close-delete" type="button"
+        aria-label="Закрыть форму удаления карточки"></button>
+    </div>
+  </div>
+
+  <div class="popup popup-avatar">
+    <div class="popup__container">
+      <div class="popup__title">Обновить аватар</div>
+      <form class="popup__form popup__form-avatar-edit" name="editAvatarForm" method="post" action="#" novalidate>
+
+        <input id="link-input-avatar" class="popup__input popup__input_type_link-place" type="url" name="avatar"
+          placeholder="Ссылка на аватар" required>
+        <div class="popup__input-error-container">
+          <span class="link-input-avatar-error popup__input-error"></span>
+        </div>
+
+        <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
+      <button class="popup__close popup__close-add" type="button"
+        aria-label="Закрыть форму реадктирования аватара"></button>
+    </div>
+  </div>
+
+
+
   <template id="elements__template">
     <li class="elements__item">
       <img class="elements__image" alt="Публикация">
       <div class="elements__container">
         <h2 class="elements__title"></h2>
-        <button class="elements__button" type="button" aria-label="Лайк"></button>
+        <div class="elements__like-container">
+          <button class="elements__button" type="button" aria-label="Лайк"></button>
+          <div class="elements__counter"></div>
+        </div>
       </div>
       <button class="elements__button-remove" type="button" aria-label="Удалить"></button>
     </li>

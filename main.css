@@ -38,6 +38,7 @@
 .popup__input-error-container{border:none;margin:0;min-height:37px;padding:0;width:358px}@media (max-width:720px){.popup__input-error-container{width:238px}}
 .popup__input_type_error{border-bottom-color:red}
 .popup__delete-title{margin-bottom:10px}
+.popup-image{background-color:rgba(0,0,0,.9)}
 .popup-image__container{max-height:80vh;max-width:80vw;position:relative}
 .popup-image__name{color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:10px 0 0;padding:0}
 .popup-image__picture{max-height:75vh;max-width:75vw}

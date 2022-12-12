@@ -75,36 +75,29 @@ function handleCardClick(name, link) {
   fullScreenImagePopup.open(name, link);
 }
 
-
 const api = new Api(apiData);
 
-const userInformation =
-  api.getInfo()
-    .then(function (data) {
-      userId = data._id;
-      userInfo.setUserInfo(data)
-      avatar.setAttribute('src', data.avatar);
-    })
 
-// Генерация карточек (Проектная 9)
-const serverCards =
-  api.getInitialCards()
-    .then(function (info) {
-      sectionCardList = new Section(
-        {
-          data: info.reverse(),
-          renderer: (item) => {
-            sectionCardList.setItem(createCard(item));
-          },
+Promise.all([api.getInfo(), api.getInitialCards()])
+  .then(([data, info]) => {
+    userId = data._id;
+    userInfo.setUserInfo(data)
+    avatar.setAttribute('src', data.avatar);
+    sectionCardList = new Section(
+      {
+        data: info.reverse(),
+        renderer: (item) => {
+          sectionCardList.setItem(createCard(item));
         },
-        '.elements__cards'
-      );
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      },
+      '.elements__cards'
+    );
+    sectionCardList.renderItems();
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
 
-Promise.all([userInformation, serverCards]).then(() => sectionCardList.renderItems());
 
 //Создаем экземпляр класса попапа с изображением (Проектная 8)
 const fullScreenImagePopup = new PopupWithImage('.popup-image');
@@ -155,7 +148,6 @@ const editProfilePopup = new PopupWithForm({
   popupSelector: '.popup-edit',
   handleFormSubmit: (dataForm) => {
     editProfilePopup.loading(true);
-
     api.editUserInfo(dataForm)
       .then((dataForm) => {
         userInfo.setUserInfo(dataForm);

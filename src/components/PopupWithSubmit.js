@@ -6,12 +6,12 @@ export default class PopupWithSubmit extends Popup {
         this._form = this._popup.querySelector('.popup__form');
     }
 
-    // принимает коллбэк на удаление карточки
+    // Коллбэк удаления карточки
     submitDeleteCard(remove) {
         this._handleSubmit = remove;
     }
 
-    // удаление карточки по нажатию на submit
+    // Метод установки слушателей
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('click', (event) => {

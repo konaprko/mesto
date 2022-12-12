@@ -58,12 +58,10 @@ export default class Card {
         });
 
         this._cardDeleteButton.addEventListener('click', () => {
-            //this._deleteCard();
             this._handleDeleteCard(this._cardId);
         });
 
         this._cardLikeButton.addEventListener('click', () => {
-            //this._likeCard();
             if (this._cardLikeButton.classList.contains('elements__button_active')) {
                 this._handleRemoveLike(this._cardId);
             } else {

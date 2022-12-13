@@ -5,7 +5,6 @@ export const formAddCard = document.querySelector('.popup__form-add'); // Пои
 export const nameInput = document.querySelector(".popup__input_type_name"); // Поиск поля формы для ввода имени (Проектная 4)
 export const jobInput = document.querySelector(".popup__input_type_job"); // Поиск поля формы для ввода деятельности (Проектная 4)
 export const formAvatarEdit = document.querySelector(".popup__form-avatar-edit"); // Поиск формы в документе (Проектная 4)
-export const avatar = document.querySelector(".profile__image"); // Поиск аватара в документе (Проектная 9)
 export const buttonEditAvatar = document.querySelector('.profile__avatar-button-edit'); // Поиск кнопки аватара в документе (Проектная 9)
 
 export const configurationOfClasses =

@@ -16,7 +16,6 @@ import {
   configurationOfClasses,
   formAvatarEdit,
   apiData,
-  avatar,
   buttonEditAvatar
 } from "../utils/constants.js";
 import './index.css';
@@ -81,8 +80,7 @@ const api = new Api(apiData);
 Promise.all([api.getInfo(), api.getInitialCards()])
   .then(([data, info]) => {
     userId = data._id;
-    userInfo.setUserInfo(data)
-    avatar.setAttribute('src', data.avatar);
+    userInfo.setUserInfo(data);
     sectionCardList = new Section(
       {
         data: info.reverse(),
@@ -141,6 +139,7 @@ cardPopupButton.addEventListener("click", function () {
 const userInfo = new UserInfo({
   name: '.profile__title',
   job: '.profile__subtitle',
+  avatar: '.profile__image',
 });
 
 //Создаем экземпляр класса попапа с редактирвоанием профиля (Проектная 9)
@@ -186,7 +185,7 @@ const editAvatarPopup = new PopupWithForm({
     editAvatarPopup.loading(true);
     api.editAvatar(data)
       .then((data) => {
-        avatar.src = data.avatar;
+        userInfo.setUserInfo(data);
         editAvatarPopup.close();
       })
       .catch((err) => {
